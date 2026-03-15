@@ -7,11 +7,11 @@ namespace Funnies;
 
 public class FunniesConfig : BasePluginConfig
 {
+    [JsonPropertyName("ColorDynamic")] public bool ColorDynamic { get; set; } =  true;
     [JsonPropertyName("ColorR")] public byte R { get; set; } = 171;
     [JsonPropertyName("ColorG")] public byte G { get; set; } = 75;
     [JsonPropertyName("ColorB")] public byte B { get; set; } = 209;
     [JsonPropertyName("CommandPermission")] public string AdminPermission { get; set; } = "@css/generic";
-    [JsonPropertyName("RconPermission")] public string RconPermission { get; set; } = "@css/rcon";
 }
  
 public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
@@ -23,15 +23,11 @@ public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
 
     public override void Load(bool hotReload)
     {
-        Console.WriteLine("So funny :)");
 
         Globals.Plugin = this;
 
         RegisterListener<Listeners.CheckTransmit>(OnCheckTransmit);
         RegisterListener<Listeners.OnTick>(OnTick);
-
-        AddCommand("css_money", "Gives a player money", CommandMoney.OnMoneyCommand);
-        AddCommand("css_rcon", "Runs a command", CommandRcon.OnRconCommand);
 
         #if DEBUG
         AddCommand("css_debug", "Debug command", CommandDebug.OnDebugCommand);
