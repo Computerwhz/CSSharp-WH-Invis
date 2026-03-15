@@ -12,6 +12,8 @@ public class FunniesConfig : BasePluginConfig
     [JsonPropertyName("ColorB")] public byte B { get; set; } = 209;
     [JsonPropertyName("CommandPermission")] public string AdminPermission { get; set; } = "@css/generic";
     [JsonPropertyName("RconPermission")] public string RconPermission { get; set; } = "@css/rcon";
+    [JsonPropertyName("WallhackEnabled")] public bool WallhackEnabled { get; set; } = true;
+    [JsonPropertyName("InvisibileEnabled")] public bool InvisibileEnabled { get; set; } = true;
 }
  
 public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
@@ -28,7 +30,9 @@ public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
         Globals.Plugin = this;
 
         RegisterListener<Listeners.CheckTransmit>(OnCheckTransmit);
-        RegisterListener<Listeners.OnTick>(OnTick);
+
+        if (Config.InvisibileEnabled)
+            RegisterListener<Listeners.OnTick>(OnTick);
 
         AddCommand("css_money", "Gives a player money", CommandMoney.OnMoneyCommand);
         AddCommand("css_rcon", "Runs a command", CommandRcon.OnRconCommand);
@@ -37,8 +41,11 @@ public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
         AddCommand("css_debug", "Debug command", CommandDebug.OnDebugCommand);
         #endif
 
-        Invisible.Setup();
-        Wallhack.Setup();
+        if (Config.InvisibileEnabled)
+            Invisible.Setup();
+        
+        if (Config.WallhackEnabled)
+            Wallhack.Setup();
     }
 
     public override void Unload(bool hotReload)
@@ -46,8 +53,11 @@ public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
         #if DEBUG
         if (hotReload)
         {
-            Invisible.Cleanup();
-            Wallhack.Cleanup();
+            if (Config.InvisibileEnabled)
+                Invisible.Cleanup();
+            
+            if (Config.WallhackEnabled)
+                Wallhack.Cleanup();
         }
         #else
         Console.WriteLine($"Reloading: hotReload? {hotReload}");
@@ -66,8 +76,11 @@ public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
             if (!Util.IsPlayerValid(player))
                 continue;
 
-            Wallhack.OnPlayerTransmit(info, player!);
-            Invisible.OnPlayerTransmit(info, player!);
+            if (Config.WallhackEnabled)
+                Wallhack.OnPlayerTransmit(info, player!);
+
+            if (Config.InvisibileEnabled)
+                Invisible.OnPlayerTransmit(info, player!);
         }
     }
 

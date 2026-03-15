@@ -19,7 +19,7 @@ public class Invisible
 
         foreach (var entity in _entities)
         {
-            if (!Globals.InvisiblePlayers.ContainsKey(player))
+            if (!Globals.InvisiblePlayers.ContainsKey(player) && player.Team != CsTeam.Spectator)
                 info.TransmitEntities.Remove(entity);
         }
 
