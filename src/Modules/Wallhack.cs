@@ -36,9 +36,30 @@ public class Wallhack
         if (player!.Team < CsTeam.Terrorist) return HookResult.Continue; // if player isnt on a team
         // var gameRules = Utilities.FindAllEntitiesByDesignerName<CCSGameRulesProxy>("cs_gamerules").First();
         // if (gameRules.GameRules!.WarmupPeriod) return HookResult.Continue;
-
         
         CreateWallhackData(player!);
+        
+        return HookResult.Continue;
+    }
+
+    public static HookResult OnPlayerTakeDamage(EventPlayerHurt @event, GameEventInfo info)
+    {
+        if (Globals.Config.WallHackConfig.dynamicColor)
+        {
+            Globals.WallhackData.TryGetValue(@event.Userid, out var wallhackData);
+
+            var health = @event.Health;
+            
+            health = Math.Clamp(health, 1, 100);
+
+            float t = (health - 1) / 99f;
+
+            int r = (int)(255 * (1f - t));
+            int g = (int)(255 * t);
+
+            wallhackData.GlowEnt.Glow.GlowColorOverride = Color.FromArgb(255 , r, g, 0);
+            Utilities.SetStateChanged(wallhackData.GlowEnt, "CBaseModelEntity", "m_Glow");
+        }
         
         return HookResult.Continue;
     }
@@ -102,10 +123,18 @@ public class Wallhack
 
         glowEntity.DispatchSpawn();
         modelRelay.DispatchSpawn();
+        
+        Color color = Color.FromArgb(255, Globals.Config.WallHackConfig.R, Globals.Config.WallHackConfig.G, Globals.Config.WallHackConfig.B);
+
+        if (Globals.Config.WallHackConfig.dynamicColor)
+        {
+            color = Color.FromArgb(255, 0, 255, 0);
+        }
+        
 
         glowEntity.Glow.GlowRange = 5000;
         glowEntity.Glow.GlowRangeMin = 0;
-        glowEntity.Glow.GlowColorOverride = Color.FromArgb(255, Globals.Config.WallHackConfig.R, Globals.Config.WallHackConfig.G, Globals.Config.WallHackConfig.B);
+        glowEntity.Glow.GlowColorOverride = color;
         glowEntity.Glow.GlowTeam = -1;
         glowEntity.Glow.GlowType = 3;
 
@@ -133,6 +162,7 @@ public class Wallhack
         Globals.Plugin.RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
         Globals.Plugin.RegisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn, HookMode.Post);
         Globals.Plugin.RegisterEventHandler<EventPlayerTeam>(OnPlayerChangeTeam, HookMode.Post);
+        Globals.Plugin.RegisterEventHandler<EventPlayerHurt>(OnPlayerTakeDamage);
 
         Globals.Plugin.AddCommand("css_wh", "Gives a player walls", CommandWallhack.OnWallhackCommand);
         Globals.Plugin.AddCommand("css_wallhack", "Gives a player walls", CommandWallhack.OnWallhackCommand);

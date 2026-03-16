@@ -14,6 +14,7 @@ public class FunniesConfig : BasePluginConfig
 
 public class WallHackConfig
 {
+    [JsonPropertyName("DynamicColor")] public bool dynamicColor { get; set; } =  true;
     [JsonPropertyName("ColorR")] public byte R { get; set; } = 171;
     [JsonPropertyName("ColorG")] public byte G { get; set; } = 75;
     [JsonPropertyName("ColorB")] public byte B { get; set; } = 209;

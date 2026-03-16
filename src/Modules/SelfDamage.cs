@@ -55,9 +55,7 @@ public class SelfDamage
 
             int damage = getWeaponDamage(@event.Weapon);
 
-            int newHealth = @event.Userid.PlayerPawn.Value.Health - damage;
-            
-            player.PlayerPawn.Value.Health =  newHealth;
+            int newHealth = player.PlayerPawn.Value.Health - damage;
             
             if (newHealth <= 0)
             {
