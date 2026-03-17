@@ -37,7 +37,7 @@ Makes a player invisible to other players unless they make noise
 
 ## Self Damage 
 
-When enable for a player self damage means that a player will take damage every time they shoot and miss the enemy 
+When enabled for a player self damage means that a player will take damage every time they shoot and miss the enemy 
 
 All damage values can be edited in the config
 
@@ -49,7 +49,7 @@ All damage values can be edited in the config
 
 ## Issues 
 
-Please report all issues via github
+Please report all issues and feature requests via the github issues page
 
 ## Disclaimer
 
