@@ -9,7 +9,7 @@ namespace CSSharpWHInvi;
 public class CSSharpWHInvis : BasePlugin, IPluginConfig<Config>
 {
     public override string ModuleName => "CSSharp Wallhack and Invisible plugin";
-    public override string ModuleVersion => "1.0.0";
+    public override string ModuleVersion => "1.0.1";
 
     public Config Config { get; set; }
 
