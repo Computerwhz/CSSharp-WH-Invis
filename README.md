@@ -4,6 +4,10 @@ A CSSharp plugin which can enable server side wallhack for player and make playe
 
 Based on content by dima_wallhacks
 
+## Install 
+
+Extract the release zip into `/game/csgo/addons/counterstrikesharp/plugins`
+
 ## Features 
 - Wallhack | give players wallhack on the server side
 - Invisible players | makes players and their weapons invisible to other players unless they make sound
