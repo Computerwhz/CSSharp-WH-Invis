@@ -1,4 +1,4 @@
-namespace Funnies.Models;
+namespace CSSharpWHInvi.Models;
 
 public struct InvisibleData(float startTime = -1f, float endTime = -1f)
 {

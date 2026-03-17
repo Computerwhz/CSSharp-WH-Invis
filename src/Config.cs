@@ -1,11 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 using CounterStrikeSharp.API.Core;
-using Funnies.Commands;
-using Funnies.Modules;
 
-namespace Funnies;
+namespace CSSharpWHInvi;
 
-public class FunniesConfig : BasePluginConfig
+public class Config : BasePluginConfig
 {
     [JsonPropertyName("WallhackConfig")] public WallHackConfig WallHackConfig { get; set; } = new();
     [JsonPropertyName("SelfDamage")] public SelfDamageConfig SelfDamageConfig { get; set; } = new();

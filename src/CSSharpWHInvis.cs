@@ -1,18 +1,17 @@
-﻿using System.Text.Json.Serialization;
-using CounterStrikeSharp.API.Core;
-using Funnies.Commands;
-using Funnies.Modules;
+﻿using CounterStrikeSharp.API.Core;
+using CSSharpWHInvi.Commands;
+using CSSharpWHInvi.Modules;
 
-namespace Funnies;
+namespace CSSharpWHInvi;
 
 
  
-public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
+public class CSSharpWHInvis : BasePlugin, IPluginConfig<Config>
 {
-    public override string ModuleName => "Funny plugin";
-    public override string ModuleVersion => "0.0.1";
+    public override string ModuleName => "CSSharp Wallhack and Invisible plugin";
+    public override string ModuleVersion => "1.0.0";
 
-    public FunniesConfig Config { get; set; }
+    public Config Config { get; set; }
 
     public override void Load(bool hotReload)
     {
@@ -61,7 +60,7 @@ public class FunniesPlugin : BasePlugin, IPluginConfig<FunniesConfig>
         }
     }
 
-    public void OnConfigParsed(FunniesConfig config)
+    public void OnConfigParsed(Config config)
     {
         Config = config;
         Globals.Config = config;

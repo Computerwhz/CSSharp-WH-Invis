@@ -1,9 +1,8 @@
-﻿using CounterStrikeSharp.API;
-using CounterStrikeSharp.API.Core;
+﻿using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Extensions;
-using Funnies.Commands;
+using CSSharpWHInvi.Commands;
 
-namespace Funnies.Modules;
+namespace CSSharpWHInvi.Modules;
 
 public class SelfDamage
 {

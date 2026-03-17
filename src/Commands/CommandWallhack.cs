@@ -4,7 +4,7 @@ using CounterStrikeSharp.API.Modules.Admin;
 using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Utils;
 
-namespace Funnies.Commands;
+namespace CSSharpWHInvi.Commands;
 
 public class CommandWallhack
 {

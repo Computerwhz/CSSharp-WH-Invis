@@ -1,10 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
-using CounterStrikeSharp.API.Modules.Memory;
 using CounterStrikeSharp.API.Modules.Utils;
 
-namespace Funnies;
+namespace CSSharpWHInvi;
 
 public static class Util
 {

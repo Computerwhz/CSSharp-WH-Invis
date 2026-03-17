@@ -1,11 +1,10 @@
 using System.Drawing;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
-using CounterStrikeSharp.API.Modules.Memory;
 using CounterStrikeSharp.API.Modules.Utils;
-using Funnies.Commands;
+using CSSharpWHInvi.Commands;
 
-namespace Funnies.Modules;
+namespace CSSharpWHInvi.Modules;
 
 public class Invisible
 {

@@ -1,11 +1,11 @@
 using CounterStrikeSharp.API.Core;
-using Funnies.Models;
+using CSSharpWHInvi.Models;
 
-namespace Funnies;
+namespace CSSharpWHInvi;
 
 public static class Globals
 {
-    public static FunniesConfig Config { get; set; }
+    public static Config Config { get; set; }
     public static List<CCSPlayerController> Wallhackers = [];
     public static Dictionary<CCSPlayerController, WallhackData> WallhackData = [];
     
@@ -14,6 +14,6 @@ public static class Globals
     public static Dictionary<CCSPlayerController, InvisibleData> InvisiblePlayers = [];
 
 #pragma warning disable CS8618
-    public static FunniesPlugin Plugin;
+    public static CSSharpWHInvis Plugin;
 #pragma warning restore CS8618
 }
