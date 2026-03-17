@@ -112,19 +112,6 @@ public class Invisible
 
             pawn.ShadowStrength = alpha < 128f ? 1.0f : 0.0f;
             Utilities.SetStateChanged(pawn!, "CBaseModelEntity", "m_flShadowStrength");
-
-            foreach (var weapon in pawn.WeaponServices!.MyWeapons)
-            {
-                weapon.Value!.ShadowStrength = alpha < 128f ? 1.0f : 0.0f;
-                Utilities.SetStateChanged(weapon.Value!, "CBaseModelEntity", "m_flShadowStrength");
-
-                if (alpha < 128f)
-                {
-                    weapon.Value!.Render = Color.FromArgb((int)alpha, pawn.Render);
-                    Utilities.SetStateChanged(weapon.Value!, "CBaseModelEntity", "m_clrRender");
-                    _entities.Add(weapon.Value!);
-                }
-            }
         }
     }
 
